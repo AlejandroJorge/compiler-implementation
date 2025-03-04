@@ -1,4 +1,5 @@
 #include "grammar.h"
+#include "persistent_tree.h"
 #include "util.h"
 #include <stdio.h>
 #include <string.h>
@@ -254,6 +255,18 @@ int main(int argc, char *argv[]) {
   assert(maxargs(prog) == 2);
 
   interp(prog);
+
+  T_tree t = NULL;
+  t = insert("d", t, NULL);
+  t = insert("b", t, NULL);
+  t = insert("f", t, NULL);
+  t = insert("c", t, NULL);
+  t = insert("a", t, NULL);
+  t = insert("e", t, NULL);
+  t = insert("g", t, NULL);
+
+  assert(exists("g", t));
+  assert(!exists("h", t));
 
   return 0;
 }
